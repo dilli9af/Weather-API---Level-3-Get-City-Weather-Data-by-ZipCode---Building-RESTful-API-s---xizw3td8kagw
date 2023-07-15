@@ -1,3 +1,4 @@
+// const { error } = require('console');
 const fs = require('fs');
 
 async function getDataFromDatabase() {
@@ -50,7 +51,18 @@ async function saveDataToDatabase(data) {
 // Level 3: Get City Weather Data by ZipCode
 async function getWeatherDataByZipCode(zipCode) {
    // TODO: Implement this function
+   const data = await getDataFromDatabase();
+   const cityData=data.find((city)=>city.zipCode==zipCode);
+   if(cityData){
+    return cityData;
+   }
+   else{
+    throw new Error("ZipCode not found");
+   }
+  //  console.log(city);
 }
+getWeatherDataByZipCode(75000);
+
 
 
 
